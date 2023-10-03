@@ -27,7 +27,7 @@ pos_y = (altura_tela - altura_janela) // 2
 window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
 window.overrideredirect(True)
 # Load the GIF image.
-image = Image.open(fr"C:\Users\adanr\Downloads\OP.png")
+image = Image.open(fr".\OP.png")
 image_tk = ImageTk.PhotoImage(image)
 # Create a label to display the GIF image.
 label1= tk.Label(window, bg='#04322b', fg='white', text='Metadoon is Loading...')
