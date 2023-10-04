@@ -5,9 +5,6 @@ from typing import Any
 #from reportlab.pdfgen import canvas
 #from reportlab.lib.pagesizes import A4
 from datetime import datetime
-import getpass
-import platform
-import pip 
 
 #IMPORTING tkinter WIDGETS:
 from tkinter.tix import *
@@ -19,21 +16,26 @@ from tkinter import scrolledtext
 from tkinter.tix import *
 
 metainfo = Tk()
+metainfo.title("Metadoon")
+# Obtém o tamanho da tela
 monitor_height = metainfo.winfo_screenheight()
 monitor_width = metainfo.winfo_screenwidth()
 pipeH = round(monitor_height * 75/100)
 pipeW = round(monitor_width * 60/100)
-metainfo.title("Metadoon")
-metainfo.geometry(f"{pipeW}x{pipeH}")
-# Obtém o tamanho da tela
-largura_tela, altura_tela = functional.get_screen_size(window)
+largura_janela =  pipeW
+altura_janela = pipeH
+class functional():
+    def get_screen_size(metainfo):
+        screen_width = metainfo.winfo_screenwidth()
+        screen_height = metainfo.winfo_screenheight()
+        return screen_width, screen_height
+largura_tela, altura_tela = functional.get_screen_size(metainfo)
 
 # Calcula as coordenadas para o centro da tela
 pos_x = (largura_tela - largura_janela) // 2
 pos_y = (altura_tela - altura_janela) // 2
 # Define o tamanho e a posição da janela
-window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
-window.overrideredirect(True)
+metainfo.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
 #metainfo.eval('tk::PlaceWindow . center')
 metainfo.configure(background="blue",)
 #icon app
