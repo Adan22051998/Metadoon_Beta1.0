@@ -2,6 +2,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import ttk
+from tkinter import messagebox
 import time
 import os
 # Create the main window.
@@ -41,10 +42,23 @@ progresso = ttk.Progressbar(window, length=10,  mode='indeterminate')
 progresso.pack(fill='x')
 
 #installing ressources
-time.sleep(5)
-os.system(fr'')
-os.system(fr'')
-os.system(fr'')
-os.system(fr'')
+def install_dependencies():
+    try:
+        os.system(fr'wsl pip install -r requirements.txt')
+        time.sleep(2)
+        os.system(fr'wsl wget {fastqc}')
+        time.sleep(2)
+        os.system(fr'wsl wget {usearch}')
+        time.sleep(2)
+        os.system(fr'wsl wget {trimmomatic}')
+        time.sleep(2)
+        os.system(fr'wsl')
+        time.sleep(2)
+        return
+    except:
+        messagebox.showinfo("METADDOON ERRPR","SOMETHING WENT WRONG;\nTRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\nCHECK YOUR CONNECTION\nTRY TO CONTACT DEVELOPERS")
+        time.sleep(10)
+        window.destroy
+
 # Start the main loop.
 window.mainloop()
