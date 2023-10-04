@@ -48,6 +48,8 @@ def install_dependencies():
         time.sleep(2)
         os.system(fr'wsl wget {fastqc}')
         time.sleep(2)
+        os.system(fr'wsl MKDIR ./app_to_run')
+        time.sleep(2)
         os.system(fr'wsl wget {usearch}')
         time.sleep(2)
         os.system(fr'wsl wget {trimmomatic}')
@@ -56,7 +58,7 @@ def install_dependencies():
         time.sleep(2)
         return
     except:
-        messagebox.showinfo("METADDOON ERRPR","SOMETHING WENT WRONG;\nTRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\nCHECK YOUR CONNECTION\nTRY TO CONTACT DEVELOPERS")
+        messagebox.showinfo("METADDOON ERRPR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
         time.sleep(10)
         window.destroy
 
