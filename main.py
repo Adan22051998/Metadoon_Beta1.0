@@ -53,6 +53,28 @@ scrollbar.pack(side="right", fill="y")
 # Configure the canvas to use the scrollbar
 f1.configure(yscrollcommand=scrollbar.set)
 #-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_#
+#Creating frames
+frame_1 = Frame(f1, borderwidth=5, relief="solid",background='#04322b')
+frame_1.pack(fill=BOTH, expand=True)
+frame_2 = Frame(f1,borderwidth=5 ,relief="solid" ,background='#04322b')
+frame_2.pack(fill=BOTH, expand=True)
+frame_3 = Frame(f1,borderwidth=5 ,relief="solid" ,background='#04322b')
+frame_3.pack(fill=BOTH, expand=True)
+#secondary frames
+f1_ = Frame(frame_1,borderwidth=5, relief="solid",background='white')
+f1_.grid(column=0, row=1)
+f2_ =Frame(frame_1,borderwidth=5, relief="solid",background='white')
+f2_.grid(column=1, row=1)
+f3_ =Frame(frame_1,borderwidth=5, relief="solid",background='white')
+f3_.grid(column=2, row=1)
+#identifiers frame_1
+seq_id_box = Label(frame_1, text='Imput a sequence:',background='#04322b', foreground='White')
+seq_id_box.grid(column=0, row=0)
+detail_ = Label(frame_1, text='Detail:',background='#04322b', foreground='White')
+detail_.grid(column=1, row=0)
+bt_ = Label(frame_1, text='What to do ?',background='#04322b', foreground='White')
+bt_.grid(column=2, row=0)
+#-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_#
 #Creating menu
 menubar = Menu(metainfo)
 metainfo.config(menu=menubar,background='#04322b')
