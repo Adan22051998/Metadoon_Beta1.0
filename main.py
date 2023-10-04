@@ -25,7 +25,17 @@ pipeH = round(monitor_height * 75/100)
 pipeW = round(monitor_width * 60/100)
 metainfo.title("Metadoon")
 metainfo.geometry(f"{pipeW}x{pipeH}")
-metainfo.configure(background="gray")
+# Obtém o tamanho da tela
+largura_tela, altura_tela = functional.get_screen_size(window)
+
+# Calcula as coordenadas para o centro da tela
+pos_x = (largura_tela - largura_janela) // 2
+pos_y = (altura_tela - altura_janela) // 2
+# Define o tamanho e a posição da janela
+window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
+window.overrideredirect(True)
+#metainfo.eval('tk::PlaceWindow . center')
+metainfo.configure(background="blue",)
 #icon app
 metainfo.iconbitmap(default='./Metadoon.ico')
 #Defining Functions
