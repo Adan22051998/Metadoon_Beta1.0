@@ -5,6 +5,12 @@ from tkinter import ttk
 from tkinter import messagebox
 import time
 import os
+#download_
+class application_fetch:
+    Fastqc = ""
+    Trimmomatic = ""
+    Usearch = ""
+    R_script = ""
 # Create the main window.
 window = tk.Tk()
 window.title("Metadoon")
@@ -46,19 +52,19 @@ def install_dependencies():
     try:
         os.system(fr'wsl pip install -r requirements.txt')
         time.sleep(2)
-        os.system(fr'wsl wget {fastqc}')
-        time.sleep(2)
         os.system(fr'wsl MKDIR ./app_to_run')
         time.sleep(2)
-        os.system(fr'wsl wget {usearch}')
+        os.system(fr'wsl wget {application_fetch.Fastqc}')
+        time.sleep(2)        
+        os.system(fr'wsl wget {application_fetch.Trimmomatic}')
         time.sleep(2)
-        os.system(fr'wsl wget {trimmomatic}')
+        os.system(fr'wsl wget {application_fetch.Usearch}')
         time.sleep(2)
-        os.system(fr'wsl')
+        os.system(fr'wsl wget {application_fetch.R_script}')
         time.sleep(2)
         return
     except:
-        messagebox.showinfo("METADDOON ERRPR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
+        messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
         time.sleep(10)
         window.destroy
 
