@@ -5,12 +5,18 @@ from tkinter import ttk
 from tkinter import messagebox
 import time
 import os
+dir_name = os.path.dirname(__file__)
 #download_
 class application_fetch:
-    Fastqc = ""
-    Trimmomatic = ""
-    Usearch = ""
-    R_script = ""
+    #FASTQC
+    Fastqc_universal = "wsl sudo install fastqc"
+    Fastqc_permission = "wsl chmod 755 fastqc"
+    #TRIMMOMATIC
+    Trimmomatic = "wsl sudo apt install trimmomatic"
+    #USEARCH
+    Usearch = "https://drive5.com/downloads/usearch11.0.667_i86linux32.gz"
+    #R-CRAN
+    R_script = "wsl sudo apt-get install r-base"
 # Create the main window.
 window = tk.Tk()
 window.title("Metadoon")
@@ -50,23 +56,61 @@ progresso.pack(fill='x')
 #installing ressources
 def install_dependencies():
     try:
-        os.system(fr'wsl pip install -r requirements.txt')
+        #os.system(fr'pip install -r requirements.txt')
+        os.system('sudo apt update')
+        os.system('sudo apt install python3-pip')
+        os.system('pip3 --version')
+        os.system('pip install tk')
+        
+        progresso.update()
         time.sleep(2)
-        os.system(fr'wsl MKDIR ./app_to_run')
+        os.system(fr'MKDIR ./app_to_run')
+        
+        progresso.update()
         time.sleep(2)
-        os.system(fr'wsl wget {application_fetch.Fastqc}')
+        os.system(fr'{application_fetch.Fastqc_universal}')
+        
+        progresso.update()
+        os.system(fr'{application_fetch.Fastqc_permission}')
+        
+        progresso.update()
         time.sleep(2)        
-        os.system(fr'wsl wget {application_fetch.Trimmomatic}')
+        os.system(fr'{application_fetch.Trimmomatic}')
+        
+        progresso.update()
         time.sleep(2)
         os.system(fr'wsl wget {application_fetch.Usearch}')
+        
+        progresso.update()
         time.sleep(2)
-        os.system(fr'wsl wget {application_fetch.R_script}')
+        os.system(fr'{application_fetch.R_script}')
+        
+        progresso.update()
+        progresso.step()
         time.sleep(2)
+        #os.system(fr'wget {application_fetch.Bowtie2}')
+        #progresso.step()
+        
         return
     except:
         messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
         time.sleep(10)
         window.destroy
+def check_one(filename):
+    try:
+        with open(filename, 'r') as file:
+            lines = file.readlines()
 
+        for line in lines:
+            if '1' in line:
+                os.startfile(fr'{dir_name}\main.py')
+                return print('Opening Metadoon...')
+
+        else:
+            install_dependencies()
+    except FileNotFoundError:
+        print('Verification file not found, plesase download metadoon again!')
+
+check_one('verification_mode.txt')
 # Start the main loop.
 window.mainloop()
