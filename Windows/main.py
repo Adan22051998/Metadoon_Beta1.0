@@ -15,7 +15,8 @@ from tkinter import messagebox
 from tkinter import scrolledtext
 from tkinter.tix import *
 from tkinter import messagebox
-
+import os
+dir_name = os.path.dirname(__file__)
 metainfo = Tk()
 metainfo.title("Metadoon")
 # Obtém o tamanho da tela
@@ -40,7 +41,7 @@ metainfo.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
 #metainfo.eval('tk::PlaceWindow . center')
 metainfo.configure(background="blue",)
 #icon app
-metainfo.iconbitmap(default='./Metadoon.ico')
+metainfo.iconbitmap(default=fr'{dir_name}/Metadoon.ico')
 #Defining Functions
 #class container:
 class container:
