@@ -9,14 +9,14 @@ dir_name = os.path.dirname(__file__)
 #download_
 class application_fetch:
     #FASTQC
-    Fastqc_universal = "sudo install fastqc"
-    Fastqc_permission = "chmod 755 fastqc"
+    Fastqc_universal = "wsl sudo install fastqc"
+    Fastqc_permission = "wsl chmod 755 fastqc"
     #TRIMMOMATIC
-    Trimmomatic = "sudo apt install trimmomatic"
+    Trimmomatic = "wsl sudo apt install trimmomatic"
     #USEARCH
     Usearch = "https://drive5.com/downloads/usearch11.0.667_i86linux32.gz"
     #R-CRAN
-    R_script = "sudo apt-get install r-base"
+    R_script = "wsl sudo apt-get install r-base"
 # Create the main window.
 window = tk.Tk()
 window.title("Metadoon")
@@ -79,7 +79,7 @@ def install_dependencies():
         
         progresso.update()
         time.sleep(2)
-        os.system(fr'wget {application_fetch.Usearch}')
+        os.system(fr'wsl wget {application_fetch.Usearch}')
         
         progresso.update()
         time.sleep(2)
@@ -93,7 +93,7 @@ def install_dependencies():
         
         return
     except:
-        messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE YOUR SYSTEM\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
+        messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
         time.sleep(10)
         window.destroy
 def check_one(filename):

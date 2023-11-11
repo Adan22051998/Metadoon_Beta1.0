@@ -6,6 +6,7 @@ from tkinter import messagebox
 import time
 import os
 dir_name = os.path.dirname(__file__)
+dir_name = dir_name.replace("\\", "/")
 #download_
 class application_fetch:
     #FASTQC
@@ -40,7 +41,7 @@ pos_y = (altura_tela - altura_janela) // 2
 window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
 window.overrideredirect(True)
 # Load the GIF image.
-image = Image.open(fr".\OP.png")
+image = Image.open(fr"{dir_name}\OP.png")
 image_tk = ImageTk.PhotoImage(image)
 # Create a label to display the GIF image.
 label1= tk.Label(window, bg='#04322b', fg='white', text='Metadoon is Loading...')
@@ -53,14 +54,19 @@ label2.pack(fill='x')
 progresso = ttk.Progressbar(window, length=10,  mode='indeterminate')
 progresso.pack(fill='x')
 
+
+
+
 #installing ressources
 def install_dependencies():
     try:
         #os.system(fr'pip install -r requirements.txt')
-        os.system('sudo apt update')
-        os.system('sudo apt install python3-pip')
-        os.system('pip3 --version')
-        os.system('pip install tk')
+        os.system('wsl sudo apt update')
+        os.system('wsl sudo apt install python3')
+        os.system('wsl python3 --version')     
+        os.system('wsl sudo apt install python3-pip')
+        os.system('wsl pip3 --version')
+        os.system('wsl pip install tk')
         
         progresso.update()
         time.sleep(2)
@@ -93,24 +99,28 @@ def install_dependencies():
         
         return
     except:
-        messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE WSL TO NEWST VERSION\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
+        messagebox.showinfo("METADDOON ERROR","SOMETHING WENT WRONG!\n-TRY REINSTAL OR UPGRADE YOUR SYSTEM\n-CHECK YOUR CONNECTION\n-TRY TO CONTACT DEVELOPERS")
         time.sleep(10)
         window.destroy
 def check_one(filename):
+    global install_dependencies
     try:
         with open(filename, 'r') as file:
             lines = file.readlines()
 
         for line in lines:
             if '1' in line:
-                os.startfile(fr'{dir_name}\main.py')
+                os.system(fr'python3 {dir_name}\main.py')
                 return print('Opening Metadoon...')
 
         else:
             install_dependencies()
+            with open(fr'{dir_name}/verification_mode.txt', 'a') as arquivo:
+                arquivo.write('1\n')
+
     except FileNotFoundError:
         print('Verification file not found, plesase download metadoon again!')
 
-check_one('verification_mode.txt')
+check_one(fr'{dir_name}/verification_mode.txt')
 # Start the main loop.
 window.mainloop()
