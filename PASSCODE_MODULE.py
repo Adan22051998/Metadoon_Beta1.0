@@ -4,7 +4,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import Button, Entry, StringVar, ttk
 from tkinter import messagebox
-import time
+
 import os
 import json
 
